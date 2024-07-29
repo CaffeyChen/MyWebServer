@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     // 需要修改的数据库信息,登录名,密码,库名
     string username = "root";
-    string password = "Cjh@0103";
+    string password = "root";
     string databasename = "yourdb";
 
     // 命令行输入
