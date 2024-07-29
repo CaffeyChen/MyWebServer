@@ -16,7 +16,8 @@ class block_queue
 private:
     locker m_mutex;     // 互斥锁
     cond m_cond;        // 条件变量
-
+    
+    // TODO: 可以改成deque
     T *m_array;         // 队列数组 （是否可以用List/queue？）
     int m_max_size;     // 队列最大容量
     int m_size;         // 队列当前容量
@@ -108,7 +109,6 @@ public:
     }
 
     // 返回队列当前容量
-    // TODO: 为什么要加锁？感觉需要修改
     int size()
     {
         int tmp = 0;

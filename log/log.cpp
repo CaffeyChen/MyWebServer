@@ -55,6 +55,7 @@ bool Log::init(const char *file_name, int close_log, int log_buf_size, int split
     char log_full_name[256] = {0};
 
     // 如果没有'/'，则直接将时间+文件名赋值给log_full_name
+    // TODO: 感觉很乱，以后修改一下
     if (p == NULL)
     {
         snprintf(log_full_name, 255, "%d_%02d_%02d_%s", my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
@@ -74,6 +75,7 @@ bool Log::init(const char *file_name, int close_log, int log_buf_size, int split
     m_fp = fopen(log_full_name, "a");
     if (m_fp == NULL)
     {
+        mkdir(dir_name, 0777);
         return false;
     }
     return true;
@@ -154,6 +156,7 @@ void Log::write_log(int level, const char *format, ...)
     m_mutex.lock();
 
     // 写入时间
+    // TODO: 感觉有点冗余，可以修改
     int n = snprintf(m_buf, 48, "%d_%02d_%02d %02d:%02d:%02d.%06ld %s ", my_tm.tm_year + 1900,
                      my_tm.tm_mon + 1, my_tm.tm_mday, my_tm.tm_hour, my_tm.tm_min, my_tm.tm_sec, now.tv_usec, s);
     int m = vsnprintf(m_buf + n, m_log_buf_size - 1, format, valst);

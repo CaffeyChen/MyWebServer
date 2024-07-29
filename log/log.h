@@ -6,7 +6,7 @@
 #include <string>
 #include <stdarg.h>
 #include <pthread.h>
-
+#include <sys/stat.h> 
 #include "block_queue.h"
 
 using namespace std;
@@ -60,9 +60,11 @@ private:
     }
 };
 
-#define LOG_DEBUG(format, ...) if (m_close_log == 0) {Log::get_instance()->write_log(0, format, ##__VA_ARGS__); Log::get_instance()->flush();}
-#define LOG_INFO(format, ...) if (m_close_log == 0) {Log::get_instance()->write_log(1, format, ##__VA_ARGS__); Log::get_instance()->flush();}
-#define LOG_WARN(format, ...) if (m_close_log == 0) {log::get_instance()->write_log(2, format, ##__VA_ARGS__); Log::get_instance()->flush();}
-#define LOG_ERROR(format, ...) if (m_close_log == 0) {Log::get_instance()->write_log(3, format, ##__VA_ARGS__); Log::get_instance()->flush();}
+#define LOG_BASE(level, format, ...) if (m_close_log == 0) {Log::get_instance()->write_log(level, format, ##__VA_ARGS__); Log::get_instance()->flush();}
+
+#define LOG_DEBUG(format, ...) LOG_BASE(0, format, ##__VA_ARGS__)
+#define LOG_INFO(format, ...) LOG_BASE(1, format, ##__VA_ARGS__)
+#define LOG_WARN(format, ...) LOG_BASE(2, format, ##__VA_ARGS__)
+#define LOG_ERROR(format, ...) LOG_BASE(3, format, ##__VA_ARGS__)
 
 #endif
