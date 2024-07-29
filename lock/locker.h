@@ -79,7 +79,6 @@ public:
 class cond
 {
 private:
-    // pthread_mutex_t m_mutex;
     pthread_cond_t m_cond;
 
 public:
