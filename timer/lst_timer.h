@@ -62,6 +62,7 @@ public:
     void tick();
 };
 
+//TODO: 工具类可以放到外面，待修改
 class Utils
 {
 public:
@@ -71,7 +72,7 @@ public:
     int m_TIMESLOT;                 // 最小超时单位
 
 public:
-    Utils(/* args */){}
+    Utils(){}
     ~Utils(){}
 
     void init(int timeslot);

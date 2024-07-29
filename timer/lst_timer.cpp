@@ -177,7 +177,7 @@ int Utils::setnonblocking(int fd)
 // TRIGMode: 事件触发模式
 void Utils::addfd(int epollfd, int fd, bool one_shot, int TRIGMode)
 {
-    epoll_event event;
+    epoll_event event = {0};
     event.data.fd = fd;
     if (TRIGMode == 1)
     {
@@ -246,5 +246,5 @@ void cb_func(client_data *user_data)
     epoll_ctl(Utils::u_epollfd, EPOLL_CTL_DEL, user_data->sockfd, 0);
     assert(user_data);
     close(user_data->sockfd);
-    http_conn::m_user_count--;
+    http_conn::m_user_count --;
 }
