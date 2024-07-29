@@ -426,7 +426,7 @@ http_conn::HTTP_CODE http_conn::do_request()
     
     const char *p = strrchr(m_url, '/');
 
-    // 处理cgi
+    // 处理CGI
     if (cgi == 1 && (*(p + 1) == '2' || *(p + 1 ) == '3'))
     {
         // 根据标志判断是登录检测还是注册检测

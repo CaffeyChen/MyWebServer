@@ -24,7 +24,6 @@
 
 #include "../lock/locker.h"
 #include "../CGImysql/sql_connection_pool.h"
-// #include "../timer/lst_timer.h"
 #include "../log/log.h"
 
 class http_conn
@@ -118,7 +117,7 @@ public:
     static int m_epollfd;
     static int m_user_count;
     MYSQL *mysql;
-    int m_state;        // 读为0， 写为1 
+    int m_state;                            // 读为0， 写为1 
 
 private:
     int m_sockfd;
