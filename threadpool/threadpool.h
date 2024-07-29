@@ -33,8 +33,8 @@ public:
     // thread_number: 线程池内的线程数量
     // max_request: 请求队列中允许的最大请求数量
     threadpool(int actor_model, connection_pool *connPool, int thread_number = 8, int max_request = 10000);
-    
     ~threadpool();
+    
     // 向请求队列中添加任务
     bool append(T *request, int state);
     bool append_p(T *request);
