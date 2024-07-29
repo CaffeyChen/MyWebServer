@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "../lock/locker.h"
+#include "../log/log.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ private:
     list<MYSQL *> connList; // 连接池
     sem reserver;           // 保持连接池中连接的信号量
 
+// TODO: 以后可以调整私有公有成员的位置
 public:
     string m_url;           // 主机地址
     string m_Port;          // 数据库端口号

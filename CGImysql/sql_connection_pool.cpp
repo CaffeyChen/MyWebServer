@@ -42,14 +42,14 @@ void connection_pool::init(string url, string User, string PassWord, string Data
         if (con == NULL)
         {
             // TODO: LOG_ERROR("MySQL Error!");
-            // LOG_ERROR("MySQL Error!");
+            LOG_ERROR("%s", "MySQL Error!");
             exit(1);
         }
         con = mysql_real_connect(con, url.c_str(), User.c_str(), PassWord.c_str(), DatabaseName.c_str(), Port, NULL, 0);
         if (con == NULL)
         {
             // TODO: LOG_ERROR("MySQL Error!");
-            // LOG_ERROR("MySQL Error!");
+            LOG_ERROR("%s", "MySQL Error!");
             exit(1);
         }
         connList.push_back(con);
@@ -69,10 +69,7 @@ MYSQL *connection_pool::GetConnection()
     {
         return NULL;
     }
-    // if (connList.size() == 0)
-    // {
-    //     return NULL;
-    // }
+
     reserver.wait();
     lock.lock();
 
